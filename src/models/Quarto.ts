@@ -33,3 +33,5 @@ class Quarto {
     return this.tarifaDiaria;
   }
 }
+
+export { Quarto };

@@ -1,4 +1,4 @@
-class Hospede {
+class Hospedes {
   private nome: string;
   private endereco: string;
   private telefone: string;
@@ -33,3 +33,5 @@ class Hospede {
     return this.endereco;
   }
 }
+
+export { Hospedes };

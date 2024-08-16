@@ -23,3 +23,7 @@ class Reserva {
     return this.dataTermino;
   }
 }
+
+export { Reserva };
+
+
