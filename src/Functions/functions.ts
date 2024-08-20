@@ -4,7 +4,7 @@ const rl = require("readline-sync");
 const menu = (): number => {
   return parseInt(
     rl.question(
-      "=====MENU=====\n1 - Cadastrar reserva/hospede\n2 - Atualizar\n3 - Deletar\n4 - Listar\n5 - Sair: "
+      "=====MENU=====\n1 - Cadastrar\n2 - Atualizar\n3 - Deletar\n4 - Listar\n5 - Sair: "
     )
   );
 };
