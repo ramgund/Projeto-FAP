@@ -69,7 +69,7 @@ while (respostaMenu !== 5) {
       console.log("Opção inválida. Tente novamente.");
   }
 
-  respostaMenu = menu(); // Chama o menu novamente para a próxima iteração
+  respostaMenu = menu();
 }
 
 console.log("Saindo...");
