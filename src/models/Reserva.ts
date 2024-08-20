@@ -4,11 +4,11 @@ import { menu } from "../Functions/functions";
 const rl = require("readline-sync");
 
 class Reserva {
-  private id: number;
-  private dataInicio: Date;
-  private dataTermino: Date;
-  private hospede: Hospedes;
-  private quarto: Quarto;
+  private id!: number;
+  private dataInicio!: Date;
+  private dataTermino!: Date;
+  private hospede!: Hospedes;
+  private quarto!: Quarto;
   private reservas: Reserva[] = [];
 
   constructor() {}
@@ -87,7 +87,8 @@ class Reserva {
         hospede.cadastrarHospede();
       }
     } catch (error) {
-      console.error("Erro ao cadastrar reserva.", error.message);
+      const err = error as Error;
+      console.error("Erro ao cadastrar reserva.", err.message);
     }
   }
 
@@ -133,7 +134,8 @@ class Reserva {
         console.log("Reserva atualizada com sucesso.");
       }
     } catch (error) {
-      console.error("Erro ao atualizar reserva:", error.message);
+      const err = error as Error;
+      console.error("Erro ao atualizar reserva:", err.message);
     }
   }
 
@@ -158,7 +160,8 @@ class Reserva {
         }
       }
     } catch (error) {
-      console.error("Erro ao deletar reserva:", error.message);
+      const err = error as Error;
+      console.error("Erro ao deletar reserva:", err.message);
     }
   }
 

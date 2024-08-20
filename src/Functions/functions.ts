@@ -1,12 +1,7 @@
 const rl = require("readline-sync");
 import { Hospedes } from "../models/Hospedes";
 
-const cadastroOpcoes = () => {
-  return parseInt(
-    rl.question("1 - Cadastrar reserva\n2 - Cadastrar hospede:  ")
-  );
-};
-
+// menu
 const menu = (): number => {
   return parseInt(
     rl.question(
@@ -15,18 +10,34 @@ const menu = (): number => {
   );
 };
 
+let respostaMenu = menu();
+
+// cadastro
+const cadastroOpcoes = () => {
+  return parseInt(
+    rl.question("1 - Cadastrar reserva\n2 - Cadastrar hospede:  ")
+  );
+};
+
+let cadastroResposta: number = cadastroOpcoes();
+
+// atualizar
 const atualizarOpcoes = (): number => {
   return parseInt(rl.question("1 - Atualizar hospede\n2 - Atualizar reserva"));
 };
 
-const respostaOpcoes: number = atualizarOpcoes();
+const opcaoAtualizar: number = atualizarOpcoes();
 
+// deletar
 const deletarOpcoes = (): number => {
   return parseInt(
     rl.question("1 - Deletar hospede\n2 - Deletar reserva\n3 - Deletar quarto")
   );
 };
 
+const opcaoDeletar: number = deletarOpcoes();
+
+// listar
 const listarOpcoes = (): number => {
   return parseInt(
     rl.question(
@@ -35,16 +46,16 @@ const listarOpcoes = (): number => {
   );
 };
 
-const respostaListar: number = listarOpcoes();
+const opcaoListar: number = listarOpcoes();
 
-const respostaDeletar: number = deletarOpcoes();
 export {
-  cadastroOpcoes,
+  cadastroResposta,
   menu,
   atualizarOpcoes,
-  respostaOpcoes,
-  respostaDeletar,
+  opcaoAtualizar,
+  opcaoDeletar,
   deletarOpcoes,
   listarOpcoes,
-  respostaListar,
+  opcaoListar,
+  respostaMenu,
 };

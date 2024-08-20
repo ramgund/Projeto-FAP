@@ -3,65 +3,69 @@ import { Hospedes } from "./src/models/Hospedes";
 import { Quarto } from "./src/models/Quarto";
 import { Reserva } from "./src/models/Reserva";
 import {
-  atualizarOpcoes,
-  cadastroOpcoes,
-  deletarOpcoes,
-  listarOpcoes,
+  cadastroResposta,
   menu,
-  respostaDeletar,
-  respostaListar,
-  respostaOpcoes,
+  opcaoDeletar,
+  opcaoListar,
+  respostaMenu,
+  opcaoAtualizar,
 } from "./src/Functions/functions";
 
 const hospede: Hospedes = new Hospedes();
 const reserva: Reserva = new Reserva();
 const quarto: Quarto = new Quarto();
 
-let resposta: number = 0;
-
-while (resposta !== 5) {
-  resposta = menu(); // 
-
-  switch (resposta) {
+while (respostaMenu !== 5) {
+  menu();
+  switch (respostaMenu) {
     case 1:
-      const cadastroResposta: number = cadastroOpcoes(); 
       if (cadastroResposta == 1) {
         reserva.cadastrarReserva(hospede, quarto);
+        console.log("Reserva cadastrada com sucesso.");
+        menu();
       } else if (cadastroResposta == 2) {
         hospede.cadastrarHospede();
+        console.log("Hospede cadastrado com sucesso.");
+        menu();
       }
       break;
 
     case 2:
-      const opcaoAtualizar: number = atualizarOpcoes(); // 
       if (opcaoAtualizar == 1) {
         hospede.atualizarHospede();
+        menu();
       } else if (opcaoAtualizar == 2) {
         reserva.atualizarReserva();
+        menu();
       } else if (opcaoAtualizar == 3) {
         quarto.atualizarQuarto();
+        menu();
       }
       break;
 
     case 3:
-      const opcaoDeletar: number = deletarOpcoes(); // Captura a escolha de deletar
       if (opcaoDeletar == 1) {
         hospede.deletarHospede();
+        menu();
       } else if (opcaoDeletar == 2) {
         reserva.deletarReserva();
+        menu();
       } else if (opcaoDeletar == 3) {
         quarto.deletarQuarto();
+        menu();
       }
       break;
 
     case 4:
-      const opcaoListar: number = listarOpcoes(); // Captura a escolha de listar
       if (opcaoListar == 1) {
         hospede.mostrarHospedes();
+        menu();
       } else if (opcaoListar == 2) {
         quarto.mostrarQuartos();
+        menu();
       } else if (opcaoListar == 3) {
         reserva.mostrarReservas();
+        menu();
       }
       break;
 

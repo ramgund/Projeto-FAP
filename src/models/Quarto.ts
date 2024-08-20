@@ -3,9 +3,9 @@ import { menu } from "../Functions/functions";
 const rl = require("readline-sync");
 
 class Quarto {
-  private numero: number;
-  private tipoQuarto: string;
-  private tarifaDiaria: number;
+  private numero!: number;
+  private tipoQuarto!: string;
+  private tarifaDiaria!: number;
   private quartos: Quarto[] = [];
 
   constructor() {}
@@ -63,7 +63,8 @@ class Quarto {
         throw new Error("Tipo de quarto inválido.");
       }
     } catch (error) {
-      console.error("Erro ao cadastrar quarto:", error.message);
+      const err = error as Error;
+      console.error("Erro ao cadastrar quarto:", err.message);
     }
   }
 
@@ -90,7 +91,8 @@ class Quarto {
         }
       }
     } catch (error) {
-      console.error("Erro ao deletar quarto:", error.message);
+      const err = error as Error;
+      console.error("Erro ao deletar quarto:", err.message);
     }
   }
 
@@ -130,7 +132,8 @@ class Quarto {
         console.log("Quarto atualizado com sucesso.");
       }
     } catch (error) {
-      console.error("Erro ao atualizar quarto:", error.message);
+      const err = error as Error;
+      console.error("Erro ao atualizar quarto:", err.message);
     }
   }
 

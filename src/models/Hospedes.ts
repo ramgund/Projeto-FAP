@@ -2,10 +2,10 @@ import { menu } from "../Functions/functions";
 const rl = require("readline-sync");
 
 class Hospedes {
-  private id: number;
-  private nome: string;
-  private endereco: string;
-  private telefone: string;
+  private id!: number;
+  private nome!: string;
+  private endereco!: string;
+  private telefone!: string;
   private hospedes: Hospedes[] = [];
 
   constructor() {}
@@ -62,7 +62,8 @@ class Hospedes {
       this.hospedes.push(novoHospede);
       console.log("Hóspede cadastrado com sucesso.");
     } catch (error) {
-      console.error("Erro ao cadastrar hóspede:", error.message);
+      const err = error as Error;
+      console.error("Erro ao cadastrar hóspede:", err.message);
     }
   }
 
@@ -102,7 +103,8 @@ class Hospedes {
         console.log("Hóspede atualizado com sucesso.");
       }
     } catch (error) {
-      console.error("Erro ao atualizar hóspede:", error.message);
+      const err = error as Error;
+      console.error("Erro ao atualizar hóspede:", err.message);
       menu();
     }
   }
@@ -126,7 +128,8 @@ class Hospedes {
         }
       }
     } catch (error) {
-      console.error("Erro ao deletar hóspede:", error.message);
+      const err = error as Error;
+      console.error("Erro ao deletar hóspede:", err.message);
     }
   }
 
