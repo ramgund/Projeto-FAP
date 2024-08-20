@@ -51,44 +51,56 @@ class Reserva {
         .question("Hóspede cadastrado? (s/n): ")
         .toLowerCase();
 
+      let hospedeEncontrado: Hospedes | undefined;
+
       if (hospedeCadastrado === "s") {
         const idHospede = parseInt(rl.question("Digite o ID do hóspede: "));
-        const hospedeEncontrado: Hospedes | undefined =
-          hospede.procurarHospede(idHospede);
+        hospedeEncontrado = hospede.procurarHospede(idHospede);
 
         if (!hospedeEncontrado) {
-          console.log("Hóspede não encontrado. Cadastrando novo hóspede.");
-          hospede.cadastrarHospede();
-          console.log("Voltando ao menu.");
-          menu();
-        } else {
-          const numeroQuarto: number = parseInt(
-            rl.question("Digite o número do quarto: ")
-          );
-          const quartoEncontrado: Quarto | undefined =
-            quarto.procurarNumero(numeroQuarto);
-          if (!quartoEncontrado) {
-            throw new Error("Quarto não encontrado.");
-          }
-          const novaReserva: Reserva = new Reserva();
-          novaReserva.setDataInicio(dataI);
-          novaReserva.setDataTermino(dataF);
-          novaReserva.hospede = hospedeEncontrado;
-          novaReserva.quarto = quartoEncontrado;
-          novaReserva.setId(
-            this.reservas.length > 0
-              ? this.reservas[this.reservas.length - 1].getId() + 1
-              : 1
-          );
-          this.reservas.push(novaReserva);
-          console.log("Reserva cadastrada com sucesso.");
+          console.log("Hóspede não encontrado.");
+          return;
         }
       } else {
-        hospede.cadastrarHospede();
+        hospedeEncontrado = hospede.cadastrarHospede();
+        console.log("Hóspede cadastrado com sucesso.");
       }
+
+      const numeroQuarto: number = parseInt(
+        rl.question("Digite o número do quarto: ")
+      );
+      const quartoEncontrado: Quarto | undefined =
+        quarto.procurarNumero(numeroQuarto);
+
+      if (!quartoEncontrado) {
+        throw new Error("Quarto não encontrado.");
+      }
+
+      // Gerar um ID único para a reserva
+      const proximoIdReserva: number =
+        this.reservas.length > 0
+          ? this.reservas[this.reservas.length - 1].getId() + 1
+          : 1;
+
+      const novaReserva: Reserva = new Reserva();
+      novaReserva.setId(proximoIdReserva);
+      novaReserva.setDataInicio(dataI);
+      novaReserva.setDataTermino(dataF);
+      novaReserva.hospede = hospedeEncontrado!;
+      novaReserva.quarto = quartoEncontrado;
+
+      this.reservas.push(novaReserva); // Adicionar a nova reserva à lista de reservas
+
+      console.log("Reserva cadastrada com sucesso!");
     } catch (error) {
-      const err = error as Error;
-      console.error("Erro ao cadastrar reserva.", err.message);
+      if (error instanceof Error) {
+        console.error("Erro ao cadastrar reserva:", error.message);
+      } else {
+        console.error("Erro desconhecido ao cadastrar reserva.");
+      }
+    } finally {
+      console.log("Voltando ao menu.");
+      menu();
     }
   }
 

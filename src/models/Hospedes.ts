@@ -42,7 +42,7 @@ class Hospedes {
     this.id = id;
   }
 
-  public cadastrarHospede(): void {
+  public cadastrarHospede(): Hospedes {
     try {
       const nome: string = rl.question("Digite o nome do hóspede: ");
       const endereco: string = rl.question("Digite o endereço: ");
@@ -61,9 +61,15 @@ class Hospedes {
 
       this.hospedes.push(novoHospede);
       console.log("Hóspede cadastrado com sucesso.");
+
+      return novoHospede; //
     } catch (error) {
       const err = error as Error;
       console.error("Erro ao cadastrar hóspede:", err.message);
+      throw err; //
+    } finally {
+      console.log("Voltando ao menu.");
+      menu();
     }
   }
 
