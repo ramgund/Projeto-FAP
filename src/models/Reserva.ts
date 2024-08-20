@@ -148,6 +148,8 @@ class Reserva {
     } catch (error) {
       const err = error as Error;
       console.error("Erro ao atualizar reserva:", err.message);
+    } finally {
+      menu();
     }
   }
 
@@ -174,6 +176,8 @@ class Reserva {
     } catch (error) {
       const err = error as Error;
       console.error("Erro ao deletar reserva:", err.message);
+    } finally {
+      menu();
     }
   }
 

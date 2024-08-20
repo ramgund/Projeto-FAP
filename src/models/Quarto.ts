@@ -65,6 +65,8 @@ class Quarto {
     } catch (error) {
       const err = error as Error;
       console.error("Erro ao cadastrar quarto:", err.message);
+    } finally {
+      menu();
     }
   }
 
@@ -93,6 +95,8 @@ class Quarto {
     } catch (error) {
       const err = error as Error;
       console.error("Erro ao deletar quarto:", err.message);
+    } finally {
+      menu();
     }
   }
 
@@ -134,6 +138,8 @@ class Quarto {
     } catch (error) {
       const err = error as Error;
       console.error("Erro ao atualizar quarto:", err.message);
+    } finally {
+      menu();
     }
   }
 

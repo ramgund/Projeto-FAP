@@ -111,6 +111,7 @@ class Hospedes {
     } catch (error) {
       const err = error as Error;
       console.error("Erro ao atualizar hóspede:", err.message);
+    } finally {
       menu();
     }
   }
@@ -136,6 +137,8 @@ class Hospedes {
     } catch (error) {
       const err = error as Error;
       console.error("Erro ao deletar hóspede:", err.message);
+    } finally {
+      menu();
     }
   }
 
